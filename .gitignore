@@ -1,0 +1,13 @@
+**/.claude
+**/.idea
+**/*.iml
+/target
+**/target
+generated
+downloaded
+/secrets/
+/local/
+*~
+*#
+.#*
+.DS_Store

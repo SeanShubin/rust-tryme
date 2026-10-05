@@ -1,0 +1,47 @@
+{
+  "prefix" : [ "com", "seanshubin" ],
+  "name" : [ "rust", "tryme" ],
+  "description" : "Rust experiments",
+  "version" : "0.1.0",
+  "language" : "rust",
+  "buildSystem" : "cargo",
+  "developer" : {
+    "name" : "Sean Shubin",
+    "githubName" : "SeanShubin",
+    "mavenUserName" : "SeanShubin",
+    "organization" : "Sean Shubin",
+    "url" : "http://seanshubin.com/"
+  },
+  "global" : [ "serde" ],
+  "dependencies" : {
+    "serde" : {
+      "crate" : "serde",
+      "features" : [ "derive" ]
+    },
+    "rand" : {
+      "crate" : "rand"
+    },
+    "serde_json" : {
+      "crate" : "serde_json"
+    },
+    "chrono" : {
+      "crate" : "chrono"
+    }
+  },
+  "versionOverrides" : [ ],
+  "modules" : {
+    "domain" : [ "rand", "serde_json", "chrono" ],
+    "console" : [ "domain", "chrono" ]
+  },
+  "javaVersion" : "25",
+  "entryPoints" : {
+    "console" : "main"
+  },
+  "sourceDependencies" : [ ],
+  "mavenPlugin" : [ ],
+  "gradlePlugin" : [ ],
+  "exports" : [ ],
+  "generateCodeStructure" : false,
+  "publishToMavenCentral" : false,
+  "preset" : "none"
+}

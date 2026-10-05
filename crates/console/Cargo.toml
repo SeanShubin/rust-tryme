@@ -1,0 +1,13 @@
+[package]
+name = "console"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "console"
+path = "src/main.rs"
+
+[dependencies]
+serde = { workspace = true }
+domain = { workspace = true }
+chrono = { workspace = true }
