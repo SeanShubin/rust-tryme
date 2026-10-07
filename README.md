@@ -8,6 +8,14 @@ Each module in the `domain` crate isolates one idea and pins it down with
 assumption about the language holds. The `console` crate runs the handful of
 experiments where watching the output is the point.
 
+## Installing rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+
+Verify with:
+rustc --version
+cargo --version
+
 ## Layout
 
 | Crate | What it holds |

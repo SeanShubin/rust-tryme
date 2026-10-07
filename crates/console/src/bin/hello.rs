@@ -1,13 +1,32 @@
-use chrono::{Local, SecondsFormat, Utc};
+use std::fs;
+use std::process::ExitCode;
+use chrono::Utc;
+use std::env::args;
+use std::error::Error;
 
-fn main() {
+fn main() -> ExitCode {
+    match run(args()) {
+        Ok(()) => ExitCode::SUCCESS,
+        Err(e) => {
+            eprintln!("{e}");
+            ExitCode::FAILURE
+        }
+    }
+}
+
+fn run(args: impl Iterator<Item = String>) -> Result<(), Box<dyn Error>> {
     let start_time = Utc::now();
-    println!("Hello, world!");
-    println!("{}", start_time.to_rfc3339());
-    println!("{}", start_time.to_rfc3339_opts(SecondsFormat::Millis, true));
-    println!("{}", start_time.to_rfc3339_opts(SecondsFormat::Millis, false));
-    println!("local {}", start_time.with_timezone(&Local).format("%Y-%m-%d %H:%M:%S"));
+    let file_name = args.skip(1).next().ok_or("usage: hello1 <filename>")?;
+    let target = fs::read_to_string(&file_name)?;
+    println!("Hello, {target}!");
     let end_time = Utc::now();
     let duration = end_time - start_time;
-    println!("took  {} microseconds", duration.num_microseconds().unwrap());
+    let duration_microseconds = duration.num_microseconds().ok_or("duration overflow")?;
+    let limit_microseconds = 100;
+    println!("took {duration_microseconds} microseconds");
+    if duration_microseconds > limit_microseconds {
+        Err(format!("limit is {limit_microseconds} microseconds").into())
+    } else {
+        Ok(())
+    }
 }
